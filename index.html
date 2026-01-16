@@ -65,6 +65,29 @@
 </head>
 
 <body data-key="d9faced3377732b0edf19e90d1bde0cd5de04801c75eb41743" data-url="https://parkseya98-code.github.io/" data-audio="./assets/music/pure-love-304010.mp3" data-confetti="true" data-time="2024-01-01 09:30:00">
+    
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const audioPath = document.body.dataset.audio;
+  const audio = new Audio(audioPath);
+  audio.loop = true;
+
+  // Coba autoplay saat load
+  audio.play().then(() => {
+    console.log("Musik berjalan otomatis");
+  }).catch(err => {
+    console.log("Autoplay diblokir, tunggu interaksi:", err);
+
+    // Kalau diblokir, tunggu interaksi user
+    const resumeAudio = () => {
+      audio.play().catch(e => console.log(e));
+      document.body.removeEventListener('click', resumeAudio);
+    };
+    document.body.addEventListener('click', resumeAudio);
+  });
+});
+</script>
+</body>
 
     <!-- Root Invitation -->
     <div class="row m-0 p-0" id="root">
